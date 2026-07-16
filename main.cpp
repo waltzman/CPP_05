@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 12:52:40 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/16 12:55:18 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main()
 	std::cout << std::endl;
 	std::cout << "Insertion operator \"<<\"  overload test:\n"
 			  << *bureaucrat;
+	delete bureaucrat;
 	
 	try
 	{
