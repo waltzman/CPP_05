@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 16:03:07 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 11:10:48 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/16 14:04:05 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ class Bureaucrat
 
 		Bureaucrat& operator=(const Bureaucrat& other);
 
-		const std::string& getName() const;
-		int	getGrade() const;
+		const std::string& 	getName() const;
+		int					getGrade() const;
 
 		void incrementGrade(int i);
 		void decrementGrade(int i);
+		void signForm(Form& form) const;
 
 		static int const	highestGrade = 1;
 		static int const	lowestGrade = 150;
