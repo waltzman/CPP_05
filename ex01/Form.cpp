@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:17:46 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 14:50:12 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,13 @@ void	Form::beSigned(const Bureaucrat& b)
 
 std::ostream& operator<<(std::ostream& outputStream, const Form& form)
 {
-	outputStream << "Form" << form.getName()
-				 << "\nsigned:\t\t\t " << form.isFormSigned()
-				 << "\nGrade required to sign:\t " << form.getGradeRequiredToSign()
-				 << "\nGrade required to execute:\t " << form.getGradeRequiredToExecute()
+	outputStream << "\n[Form] Printing:\n" 
+				 << "Name:\t\t\t\t" 
+				 << form.getName()
+				 << "\nSigned:\t\t\t\t" << (form.isFormSigned() ? "Signed" : "Not signed")
+				 << "\nGrade required to sign:\t\t" << form.getGradeRequiredToSign()
+				 << "\nGrade required to execute:\t" << form.getGradeRequiredToExecute()
+				 << "\n"
 				 << std::endl;
 	return outputStream;
 }

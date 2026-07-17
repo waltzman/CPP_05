@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:18:09 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 14:42:39 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 
 int main()
 {
-/* Create a form with grade too high */
-std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
+	std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 
 	{
 		try
@@ -38,8 +37,6 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 	
 	std::cout << "\n******* BUREAUCRAT SIGNING FORM *******\n\n";
 
-
-	/* Create form and sign it */
 	{
 		try
 		{
@@ -58,7 +55,7 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 	}
 
 	std::cout << "\n******* EXCEPTION SIGNING FORM BY BUREAUCRAT *******\n\n";
-	/* Create form and try to execute it but the grade is not enough */
+
 	{
 		try
 		{
@@ -66,6 +63,22 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 			Form form("form 2026", 20, 45);
 			
 			b.signForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << RED
+					  << e.what() 
+					  << RESET
+					  << std::endl;
+		}
+	}
+std::cout << "\n******* FORM INSERTION OPERATOR OVERLOAD TEST *******\n\n";
+	{
+		try
+		{
+			Form form("form2026", 100, 100);
+			
+			std::cout << form;
 		}
 		catch (std::exception &e)
 		{
