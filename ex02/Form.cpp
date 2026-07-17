@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:17:46 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 13:21:30 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,21 @@ void	Form::beSigned(const Bureaucrat& b)
 				  << "\n[Form] "
 				  << this->getName() 
 				  << " signed.\n"
+				  << RESET
+				  << std::endl;
+	}
+	else
+		throw(Form::GradeTooLowException());
+}
+
+void	Form::beExecuted(const Bureaucrat& b) const
+{
+	if(b.getGrade() <= this->gradeRequiredToExecute)
+	{
+		std::cout << YELLOW 
+				  << "[Form] Bureaucrat "
+				  << this->getName() 
+				  << " executed.\n"
 				  << RESET
 				  << std::endl;
 	}

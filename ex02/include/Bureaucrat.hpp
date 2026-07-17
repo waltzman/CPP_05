@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 16:03:07 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:17:20 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 10:56:00 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Bureaucrat
 		void incrementGrade(int i);
 		void decrementGrade(int i);
 		void signForm(Form& form);
+		void execForm(Form& form);
 
 		static int const	highestGrade = 1;
 		static int const	lowestGrade = 150;

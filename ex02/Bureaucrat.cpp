@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 07:01:09 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:17:38 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 13:20:50 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,32 @@ void Bureaucrat::signForm(Form& form)
 				  << std::endl;
 	}
 }
+
+void Bureaucrat::execForm(Form& form)
+{
+	try
+	{
+		form.beExecuted(*this);
+		std::cout <<  "[Bureaucrat] "
+				  << name 
+				  << " executed the " 
+				  << form.getName() << " form.\n" << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << "[Bureaucrat] "
+				  << name
+				  << " could not execute the "
+				  << form.getName()
+				  << " form, because \n"
+				  << RED
+				  << e.what()
+				  << RESET
+				  << "\n"
+				  << std::endl;
+	}
+}
+
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Bureaucrat: grade too high");

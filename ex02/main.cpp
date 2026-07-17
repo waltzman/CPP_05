@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:18:09 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 12:03:36 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,44 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 			Form form("form 2026", 20, 45);
 			
 			b.signForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << RED
+					  << e.what() 
+					  << RESET
+					  << std::endl;
+		}
+	}
+
+	std::cout << "\n******* EXECUTING FORM BY BUREAUCRAT *******\n\n";
+	/* Create form and try to execute it but the grade is not enough */
+	{
+		try
+		{
+			Bureaucrat b("B", 35);
+			Form form("form 2026", 20, 45);
+			
+			b.execForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << RED
+					  << e.what() 
+					  << RESET
+					  << std::endl;
+		}
+	}
+
+	std::cout << "\n******* EXCEPTION EXECUTING FORM BY UREAUCRAT *******\n\n";
+	/* Create form and try to execute it but the grade is not enough */
+	{
+		try
+		{
+			Bureaucrat b("B", 50);
+			Form form("form 2026", 20, 45);
+			
+			b.execForm(form);
 		}
 		catch (std::exception &e)
 		{
