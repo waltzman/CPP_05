@@ -6,13 +6,15 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 07:01:09 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 12:05:18 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 13:20:50 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 #define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
 Bureaucrat::Bureaucrat()

@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 11:56:36 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 13:21:30 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <iostream>
 
 #define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
 Form::Form(): name("Basic formn"), isSigned(false), gradeRequiredToSign(150), gradeRequiredToExecute (150)
@@ -78,9 +80,11 @@ void	Form::beSigned(const Bureaucrat& b)
 	if(b.getGrade() <= this->gradeRequiredToSign)
 	{
 		this->isSigned = true;
-		std::cout << "\n[Form] "
+		std::cout << GREEN
+				  << "\n[Form] "
 				  << this->getName() 
 				  << " signed.\n"
+				  << RESET
 				  << std::endl;
 	}
 	else
@@ -91,9 +95,11 @@ void	Form::beExecuted(const Bureaucrat& b) const
 {
 	if(b.getGrade() <= this->gradeRequiredToExecute)
 	{
-		std::cout << "[Form] Bureaucrat "
+		std::cout << YELLOW 
+				  << "[Form] Bureaucrat "
 				  << this->getName() 
 				  << " executed.\n"
+				  << RESET
 				  << std::endl;
 	}
 	else
