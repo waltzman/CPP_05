@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 13:21:16 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 07:38:38 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 10:49:26 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Form
 	public:
 		Form();
 		Form(const std::string& name, int gradeToSign, int gradeToExecute);
-		Form(cosnt Form& other);
+		Form(const Form& other);
 		Form& operator=(const Form& other);
 		~Form();
 
@@ -38,7 +38,8 @@ class Form
 		bool 				isFormSigned() const;
 		int 				getGradeRequiredToSign() const;
 		int 				getGradeRequiredToExec() const;
-		void 				beSigned(const Buraucrate& b);
+		void 				beSigned(const Bureaucrat& b);
+		void				beExecuted(const Bureaucrat& b) const;
 		
 		class GradeTooLowException: public std::exception
 		{

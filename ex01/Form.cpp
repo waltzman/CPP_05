@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 07:52:29 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 11:00:15 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ Form::Form()
 {
 	name = "Basic form";
 	isSigned = false;
-	gradeRequiredToSign(Bureaucrat::lowestGrade);
-	gradeRequiredToExecute(Bureaucrat::lowestGrade);
+	gradeRequiredToSign = 150;
+	gradeRequiredToExecute = 150;
 	
 	std::cout << "[Form] Constructor executed." << std::endl;
 }
@@ -34,8 +34,8 @@ Form::Form(const std::string& name, const int gradeToSign, const int gradeToExec
 	std::cout << "[Form] Parametrized constructor executed." << std::endl;
 	this->name = name;
 	isSigned = false;
-	gradeRequiredToSign(gradeToSign);
-	gradeRequiredToExecute(gradeToExecute);
+	gradeRequiredToSign = gradeToSign;
+	gradeRequiredToExecute = gradeToExecute;
 }
 
 Form::Form(const Form& other)
@@ -43,7 +43,7 @@ Form::Form(const Form& other)
 	name = other.name;
 	isSigned = other.isSigned;
 	gradeRequiredToSign = other.gradeRequiredToSign;
-	graseRequiredToExecute = other.gradeRequiredToExecute;
+	gradeRequiredToExecute = other.gradeRequiredToExecute;
 	std::cout << "[Form] Copy constructor executed." << std::endl;
 }
 
@@ -85,7 +85,30 @@ int Form::getGradeRequiredToExecute() const
 void	Form::beSigned(const Bureaucrat& b)
 {
 	if(b.getGradeRequiredToSign() <= this->gradeRequiredToSign)
+	{
 		this->isSigned = true;
+		std::cout << "[Form]"
+				  << b.getName() 
+				  << "signed " 
+				  << this->getName 
+				  << " form.\n"
+				  << std::endl;
+	}
+	else
+		throw(Form::GradeTooLowException());
+}
+
+void	Form::beExecuted(const Bureaucrat& b)
+{
+	if(b.getGradeRequiredToExec() <= this->gradeRequiredToExec)
+	{
+		std::cout << "[Form]"
+				  << b.getName() 
+				  << "executed the " 
+				  << this->getName 
+				  << " form.\n"
+				  << std::endl;
+	}
 	else
 		throw(Form::GradeTooLowException());
 }
@@ -98,3 +121,14 @@ std::ostream& operator<<(std::ostream outputStream, const Form& form)
 				 << "\nGrade required to execute:\t " << form.getGradeRequiredToExec()
 				 << std::endl;
 }
+
+const char *Form::GradeTooLowException::what(void) const throw()
+{
+	return ("Form: grade too low");
+};
+
+const char *Form::GradeTooHighException::what(void) const throw()
+{
+	return ("Form: grade too high");
+};
+

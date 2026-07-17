@@ -6,76 +6,112 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 16:33:16 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 10:43:20 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-#define RED "\033[31m"
-#define RESET "\033[0m"
 
 int main()
 {
-	std::cout << " \n -----  INSERTION OPERATOR << OVERLOAD TEST -----\n" << std::endl;
-	Bureaucrat* bureaucrat = new Bureaucrat("Roman", 100);
-	std::cout << std::endl;
-	std::cout << "Insertion operator \"<<\"  overload test:\n"
-			  << *bureaucrat;
-	delete bureaucrat;
-	
-	try
+/* Create a form with grade too high */
+std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
+
 	{
-		std::cout << " \n -----  TESTING NOT DEFINED EXCEPTION  -----\n" << std::endl;
-		Bureaucrat* bureaucrat = new Bureaucrat("Roman", 200);
-		(void)bureaucrat;
-	}
-	
-	catch (std::exception& e)
-	{
-		std::cout << "My not defined exception code\n";
-	}
-	
-	try
-	{
-		std::cout << " \n -----  TESTING TOO LOW EXCEPTION  -----\n" << std::endl;
-		std::cout << "Testing GradeTooLowException:" << std::endl;
-		Bureaucrat* bureaucrat = new Bureaucrat("Ivan", 200);
-		bureaucrat->getGrade();
-	}
-	
-	catch(Bureaucrat::GradeTooLowException &e)
-	{
-		std::cout << " \nFailed on Bureaucrat construction\n"
-				  << "Exception:"
-				  << std::endl
-				  << RED
-				  << e.what()
-				  << RESET
-				  << "\n";
+		try
+		{
+			Form form1("form 1", 0, 5);
+		}
+		catch(std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		
 	}
 
-	try
-	{
-		std::cout << " \n -----  TESTING TOO HIGH EXCEPTION  -----\n" << std::endl;
-		std::cout << "Testing GradeTooHighException:" << std::endl;
-		Bureaucrat* bureaucrat = new Bureaucrat("Ivan", 0);
-		bureaucrat->getGrade();
-	
-	}
-	catch(Bureaucrat::GradeTooHighException &e)
-	{
+	std::cout << "\n******* CREATING FORM *******\n\n";
 
-		std::cout << "\nFailed on Bureaucrat construction\n"
-				  << "Exception:"
-				  << std::endl
-				  << RED
-				  << e.what()
-				  << RESET
-				  << "\n"
-				  << std::endl;
+
+	{
+		try
+		{
+			Bureaucrat b1("B 1", 15);
+			Form form("form 33", 20, 45);
+			b1.signForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 	}
 	
+	std::cout << "\n******* BUREAUCRAT SIGNING FORM *******\n\n";
+
+
+	/* Create form and sign it */
+	{
+		try
+		{
+			Bureaucrat b("B", 10);
+			Form form("form 2026", 20, 45);
+			
+			b.signForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	std::cout << "\n******* EXCEPTION SIGNING FORM BY BUREAUCRAT *******\n\n";
+	/* Create form and try to execute it but the grade is not enough */
+	{
+		try
+		{
+			Bureaucrat b("B", 35);
+			Form form("form 2026", 20, 45);
+			
+			b.signForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	std::cout << "\n******* EXECUTING FORM BY UREAUCRAT *******\n\n";
+	/* Create form and try to execute it but the grade is not enough */
+	{
+		try
+		{
+			Bureaucrat b("B", 35);
+			Form form("form 2026", 20, 45);
+			
+			b.execForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
+	return (0);
+
+	std::cout << "\n******* EXCEPTION EXECUTING FORM BY UREAUCRAT *******\n\n";
+	/* Create form and try to execute it but the grade is not enough */
+	{
+		try
+		{
+			Bureaucrat b("B", 50);
+			Form form("form 2026", 20, 45);
+			
+			b.execForm(form);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
 	return (0);
 }
