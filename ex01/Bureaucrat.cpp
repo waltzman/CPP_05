@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 07:01:09 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 14:31:19 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 08:08:13 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,14 @@ void Bureaucrat::decrementGrade(int i)
 		grade += i;
 }
 
-
+void Bureaucrat::signForm(const Form& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name << " signed the " << form.getName() << " form." << std::endl;
+	}
+}
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {

@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 13:21:16 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 14:02:03 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 07:38:38 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class Form
 		const std::string&	getName() const;
 		bool 				isFormSigned() const;
 		int 				getGradeRequiredToSign() const;
+		int 				getGradeRequiredToExec() const;
 		void 				beSigned(const Buraucrate& b);
 		
 		class GradeTooLowException: public std::exception

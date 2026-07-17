@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 16:30:34 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 07:52:29 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Form::Form()
 	std::cout << "[Form] Constructor executed." << std::endl;
 }
 
-Form::Form(const std::string& name, cosnt int gradeToSign, const int gradeToExecute)
+Form::Form(const std::string& name, const int gradeToSign, const int gradeToExecute)
 {
 	if (gradeToSign < Bureaucrat::highestGrade || gradeToExecute < Bureaucrat::highestGrade)
 		throw (Form::GradeToHighException());
@@ -62,35 +62,39 @@ Form& From::operator=(const Form& other)
 	return (*this);
 }
 
-std::string cosnt& Form::getName() const
+std::string const& Form::getName() const
 {
 	return (this->name);
 }
 
-bool Form::isSigned() const
+bool Form::isFormSigned() const
 {
 	return (this->isSigned);
 }
 
-int Form::getGradeRequiredToSign() cosnt
+int Form::getGradeRequiredToSign() const
 {
 	return (this->gradeRequiredToSign);
 }
 
-int Form::getGradeRequiredToExecute() cosnt
+int Form::getGradeRequiredToExecute() const
 {
 	return (this->gradeRequiredToExecute);
 }
 
 void	Form::beSigned(const Bureaucrat& b)
 {
-	if (this->isSigned)
-		std::cout << "[Form] the form is already signed"
+	if(b.getGradeRequiredToSign() <= this->gradeRequiredToSign)
+		this->isSigned = true;
 	else
-	{
-		if(b.getGradeRequiredToSign() <= this->gradeRequiredToSign)
-			this->isSigned = true;
-		else
-			throw(Form::GradeTooLowException());
-	}
+		throw(Form::GradeTooLowException());
+}
+
+std::ostream& operator<<(std::ostream outputStream, const Form& form)
+{
+	outputStream << "Form" << form.getName()
+				 << "\nsigned:\t\t\t " << form.isSigned()
+				 << "\nGrade required to sign:\t " << form.getGradeRequiredToSign()
+				 << "\nGrade required to execute:\t " << form.getGradeRequiredToExec()
+				 << std::endl;
 }

@@ -6,12 +6,12 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 12:55:18 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/16 16:33:16 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include <iostream>
+#include "Form.hpp"
 
 #define RED "\033[31m"
 #define RESET "\033[0m"
