@@ -3,115 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 12:03:36 by rlobun           ###   ########.fr       */
+/*   Created: 2022/12/19 16:03:10 by mcombeau          #+#    #+#             */
+/*   Updated: 2022/12/22 12:34:14 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
 
-#define RED "\033[31m"
-#define RESET "\033[0m"
+#define RESET	"\e[0m"
+#define RED		"\e[31m"
 
-int main()
+int	main(void)
 {
-/* Create a form with grade too high */
-std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
+	Bureaucrat	lowlyBureaucrat("Lowly Larry", 142);
+	Bureaucrat	averageBureaucrat("Average Andy", 65);
+	Bureaucrat	highBureaucrat("High Harry", 6);
 
-	{
-		try
-		{
-			Form form1("form1", 0, 5);
-		}
-		catch(std::exception &e)
-		{
-			std::cout << RED 
-					  << e.what() 
-					  << RESET
-					  << std::endl;
-		}
-		
-	}
+	std::cout << std::endl << "Three bureaucrats created:\n"
+			"\t" << lowlyBureaucrat << "\n"
+			"\t" << averageBureaucrat << "\n"
+			"\t" << highBureaucrat << std::endl << std::endl;
 	
-	std::cout << "\n******* BUREAUCRAT SIGNING FORM *******\n\n";
+	ShrubberyCreationForm	shrubForm("Forest");
+	RobotomyRequestForm		robotomyForm("CEO");
+	PresidentialPardonForm	pardonForm(highBureaucrat.getName());
 
+	std::cout << std::endl << "Three forms created:\n"
+			"\t" << shrubForm << "\n"
+			"\t" << robotomyForm << "\n"
+			"\t" << pardonForm << std::endl;
 
-	/* Create form and sign it */
-	{
-		try
-		{
-			Bureaucrat b("B", 10);
-			Form form("form 2026", 20, 45);
-			
-			b.signForm(form);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << RED
-					  << e.what() 
-					  << RESET
-					  << std::endl;
-		}
-	}
+	std::cout << std::endl << "-- Signing and executing Shrubbery form:" << std::endl;
+	lowlyBureaucrat.signForm(shrubForm);
+	lowlyBureaucrat.executeForm(shrubForm);
+	averageBureaucrat.executeForm(shrubForm);
 
-	std::cout << "\n******* EXCEPTION SIGNING FORM BY BUREAUCRAT *******\n\n";
-	/* Create form and try to execute it but the grade is not enough */
-	{
-		try
-		{
-			Bureaucrat b("B", 35);
-			Form form("form 2026", 20, 45);
-			
-			b.signForm(form);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << RED
-					  << e.what() 
-					  << RESET
-					  << std::endl;
-		}
-	}
+	std::cout << std::endl << "-- Signing and executing Presidential Pardon form:" << std::endl;
+	highBureaucrat.executeForm(pardonForm);
+	highBureaucrat.signForm(pardonForm);
+	highBureaucrat.executeForm(pardonForm);
+	highBureaucrat.incrementGrade();
+	highBureaucrat.executeForm(pardonForm);
 
-	std::cout << "\n******* EXECUTING FORM BY BUREAUCRAT *******\n\n";
-	/* Create form and try to execute it but the grade is not enough */
-	{
-		try
-		{
-			Bureaucrat b("B", 35);
-			Form form("form 2026", 20, 45);
-			
-			b.execForm(form);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << RED
-					  << e.what() 
-					  << RESET
-					  << std::endl;
-		}
-	}
+	std::cout << std::endl << "-- Signing and executing Robotomy form:" << std::endl;
+	averageBureaucrat.executeForm(robotomyForm);
+	averageBureaucrat.signForm(robotomyForm);
+	averageBureaucrat.executeForm(robotomyForm);
+	highBureaucrat.executeForm(robotomyForm);
 
-	std::cout << "\n******* EXCEPTION EXECUTING FORM BY UREAUCRAT *******\n\n";
-	/* Create form and try to execute it but the grade is not enough */
-	{
-		try
-		{
-			Bureaucrat b("B", 50);
-			Form form("form 2026", 20, 45);
-			
-			b.execForm(form);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << RED
-					  << e.what() 
-					  << RESET
-					  << std::endl;
-		}
-	}
+	std::cout << std::endl;
 	return (0);
 }

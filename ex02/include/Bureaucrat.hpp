@@ -6,18 +6,18 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 16:03:07 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 10:56:00 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 15:40:32 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <string>
 #include <iostream>
 
-class Form;
+class AAForm;
 
 class Bureaucrat
 {
@@ -25,7 +25,7 @@ class Bureaucrat
 		std::string name;
 		int grade;
 	public:
-		Bureaucrat(void);
+		Bureaucrat();
 		Bureaucrat(const std::string& name, int grade);
 		Bureaucrat(const Bureaucrat& other);
 		~Bureaucrat();
@@ -37,8 +37,8 @@ class Bureaucrat
 
 		void incrementGrade(int i);
 		void decrementGrade(int i);
-		void signForm(Form& form);
-		void execForm(Form& form);
+		void signForm(AForm& form);
+		void executeForm(AForm& form);
 
 		static int const	highestGrade = 1;
 		static int const	lowestGrade = 150;

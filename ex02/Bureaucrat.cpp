@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 07:01:09 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 13:20:50 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 14:26:46 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void Bureaucrat::decrementGrade(int i)
 		grade += i;
 }
 
-void Bureaucrat::signForm(Form& form)
+void Bureaucrat::signForm(AForm& form)
 {
 	try
 	{
@@ -111,7 +111,7 @@ void Bureaucrat::signForm(Form& form)
 	}
 }
 
-void Bureaucrat::execForm(Form& form)
+void Bureaucrat::executeForm(AForm& form)
 {
 	try
 	{
