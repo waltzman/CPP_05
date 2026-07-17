@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 11:00:15 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 11:56:36 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,30 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-Form::Form()
-{
-	name = "Basic form";
-	isSigned = false;
-	gradeRequiredToSign = 150;
-	gradeRequiredToExecute = 150;
-	
+#define RED "\033[31m"
+#define RESET "\033[0m"
+
+Form::Form(): name("Basic formn"), isSigned(false), gradeRequiredToSign(150), gradeRequiredToExecute (150)
+{	
 	std::cout << "[Form] Constructor executed." << std::endl;
 }
 
-Form::Form(const std::string& name, const int gradeToSign, const int gradeToExecute)
+Form::Form(const std::string& name, const int gradeToSign, const int gradeToExecute) :
+		name(name), isSigned(false), gradeRequiredToSign(gradeToSign), gradeRequiredToExecute (gradeToExecute)
 {
-	if (gradeToSign < Bureaucrat::highestGrade || gradeToExecute < Bureaucrat::highestGrade)
-		throw (Form::GradeToHighException());
-	if (gradeToSign > Bureaucrat::lowestGrade || gradeToExecute > Bureaucrat::lowestGrade)
-		throw (Form::GradeToLowException());
+	if (gradeRequiredToSign < Bureaucrat::highestGrade || gradeRequiredToExecute < Bureaucrat::highestGrade)
+		throw (Form::GradeTooHighException());
+	if (gradeRequiredToSign > Bureaucrat::lowestGrade || gradeRequiredToExecute > Bureaucrat::lowestGrade)
+		throw (Form::GradeTooLowException());
 
 	std::cout << "[Form] Parametrized constructor executed." << std::endl;
-	this->name = name;
-	isSigned = false;
-	gradeRequiredToSign = gradeToSign;
-	gradeRequiredToExecute = gradeToExecute;
 }
 
-Form::Form(const Form& other)
+Form::Form(const Form& other) :
+	name(other.name), isSigned(other.isSigned), 
+	gradeRequiredToSign(other.gradeRequiredToSign), gradeRequiredToExecute (other.gradeRequiredToExecute)
 {
-	name = other.name;
-	isSigned = other.isSigned;
-	gradeRequiredToSign = other.gradeRequiredToSign;
-	gradeRequiredToExecute = other.gradeRequiredToExecute;
+	(void)other;
 	std::cout << "[Form] Copy constructor executed." << std::endl;
 }
 
@@ -52,12 +46,9 @@ Form::~Form()
 	std::cout << "[Form] Destructor executed." << std::endl;
 }
 
-Form& From::operator=(const Form& other)
+Form& Form::operator=(const Form& other)
 {
-	name = other.name;
-	isSigned = other.isSigned;
-	gradeRequiredToSign = other.gradeRequiredToSign;
-	graseRequiredToExecute = other.gradeRequiredToExecute;
+	(void)other;
 	std::cout << "[Form] Assignment operator executed." << std::endl;
 	return (*this);
 }
@@ -84,51 +75,48 @@ int Form::getGradeRequiredToExecute() const
 
 void	Form::beSigned(const Bureaucrat& b)
 {
-	if(b.getGradeRequiredToSign() <= this->gradeRequiredToSign)
+	if(b.getGrade() <= this->gradeRequiredToSign)
 	{
 		this->isSigned = true;
-		std::cout << "[Form]"
-				  << b.getName() 
-				  << "signed " 
-				  << this->getName 
-				  << " form.\n"
+		std::cout << "\n[Form] "
+				  << this->getName() 
+				  << " signed.\n"
 				  << std::endl;
 	}
 	else
 		throw(Form::GradeTooLowException());
 }
 
-void	Form::beExecuted(const Bureaucrat& b)
+void	Form::beExecuted(const Bureaucrat& b) const
 {
-	if(b.getGradeRequiredToExec() <= this->gradeRequiredToExec)
+	if(b.getGrade() <= this->gradeRequiredToExecute)
 	{
-		std::cout << "[Form]"
-				  << b.getName() 
-				  << "executed the " 
-				  << this->getName 
-				  << " form.\n"
+		std::cout << "[Form] Bureaucrat "
+				  << this->getName() 
+				  << " executed.\n"
 				  << std::endl;
 	}
 	else
 		throw(Form::GradeTooLowException());
 }
 
-std::ostream& operator<<(std::ostream outputStream, const Form& form)
+std::ostream& operator<<(std::ostream& outputStream, const Form& form)
 {
 	outputStream << "Form" << form.getName()
-				 << "\nsigned:\t\t\t " << form.isSigned()
+				 << "\nsigned:\t\t\t " << form.isFormSigned()
 				 << "\nGrade required to sign:\t " << form.getGradeRequiredToSign()
-				 << "\nGrade required to execute:\t " << form.getGradeRequiredToExec()
+				 << "\nGrade required to execute:\t " << form.getGradeRequiredToExecute()
 				 << std::endl;
+	return outputStream;
 }
 
-const char *Form::GradeTooLowException::what(void) const throw()
+const char* Form::GradeTooLowException::what(void) const throw()
 {
-	return ("Form: grade too low");
+	return ("Exception: Form: grade too low");
 };
 
-const char *Form::GradeTooHighException::what(void) const throw()
+const char* Form::GradeTooHighException::what(void) const throw()
 {
-	return ("Form: grade too high");
+	return ("Exception: Form: grade too high");
 };
 

@@ -6,13 +6,15 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 10:43:20 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/17 12:03:36 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+#define RED "\033[31m"
+#define RESET "\033[0m"
 
 int main()
 {
@@ -22,29 +24,16 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 	{
 		try
 		{
-			Form form1("form 1", 0, 5);
+			Form form1("form1", 0, 5);
 		}
 		catch(std::exception &e)
 		{
-			std::cerr << e.what() << std::endl;
+			std::cout << RED 
+					  << e.what() 
+					  << RESET
+					  << std::endl;
 		}
 		
-	}
-
-	std::cout << "\n******* CREATING FORM *******\n\n";
-
-
-	{
-		try
-		{
-			Bureaucrat b1("B 1", 15);
-			Form form("form 33", 20, 45);
-			b1.signForm(form);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
 	}
 	
 	std::cout << "\n******* BUREAUCRAT SIGNING FORM *******\n\n";
@@ -61,7 +50,10 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << RED
+					  << e.what() 
+					  << RESET
+					  << std::endl;
 		}
 	}
 
@@ -77,11 +69,14 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << RED
+					  << e.what() 
+					  << RESET
+					  << std::endl;
 		}
 	}
 
-	std::cout << "\n******* EXECUTING FORM BY UREAUCRAT *******\n\n";
+	std::cout << "\n******* EXECUTING FORM BY BUREAUCRAT *******\n\n";
 	/* Create form and try to execute it but the grade is not enough */
 	{
 		try
@@ -93,10 +88,12 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << RED
+					  << e.what() 
+					  << RESET
+					  << std::endl;
 		}
 	}
-	return (0);
 
 	std::cout << "\n******* EXCEPTION EXECUTING FORM BY UREAUCRAT *******\n\n";
 	/* Create form and try to execute it but the grade is not enough */
@@ -110,7 +107,10 @@ std::cout << "\n******* EXCEPTION CREATING FORM *******\n\n";
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << RED
+					  << e.what() 
+					  << RESET
+					  << std::endl;
 		}
 	}
 	return (0);
