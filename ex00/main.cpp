@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/27 16:11:07 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/27 16:14:16 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int main()
 		std::cout << std::endl;
 		std::cout << *b1;
 		std::cout << std::endl;
-		b1->decrementGrade(10);
+		b1->incrementGrade(10);
 		std::cout << *b1;
 		std::cout << std::endl;
 		b1->incrementGrade(20);
