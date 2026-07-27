@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 12:55:18 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/27 16:11:07 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,19 @@ int main()
 	
 	try
 	{
-		std::cout << " \n -----  TESTING NOT DEFINED EXCEPTION  -----\n" << std::endl;
+		std::cout << " \n -----  TESTING CUSTOM EXCEPTION  -----\n" << std::endl;
 		Bureaucrat* bureaucrat = new Bureaucrat("Roman", 200);
 		(void)bureaucrat;
 	}
 	
 	catch (std::exception& e)
 	{
-		std::cout << "My not defined exception code\n";
+		std::cout << "Exception:"
+				  << std::endl
+				  << RED
+				  << "Custom defined exception code"
+				  << RESET
+				  << std::endl;
 	}
 	
 	try
@@ -76,6 +81,51 @@ int main()
 				  << "\n"
 				  << std::endl;
 	}
+
+	try
+	{
+		std::cout <<  "\n -----  TESTING INCREMENT ----- \n"
+				  << std::endl;
+		Bureaucrat* b1 = new Bureaucrat("Zel", 100);
+		std::cout << std::endl;
+		std::cout << *b1;
+		std::cout << std::endl;
+		b1->decrementGrade(10);
+		std::cout << *b1;
+		std::cout << std::endl;
+		b1->incrementGrade(20);
+		std::cout << *b1;
+		std::cout << std::endl;
+		b1->incrementGrade(200);
+		std::cout << *b1;
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		std::cout <<  "\n -----  TESTING DECREMENT ----- \n"
+				  << std::endl;
+		Bureaucrat* b1 = new Bureaucrat("Zel", 100);
+		std::cout << std::endl;
+		std::cout << *b1;
+		std::cout << std::endl;
+		b1->decrementGrade(10);
+		std::cout << *b1;
+		std::cout << std::endl;
+		b1->decrementGrade(20);
+		std::cout << *b1;
+		std::cout << std::endl;
+		b1->decrementGrade(200);
+		std::cout << *b1;
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 	
 	return (0);
 }
