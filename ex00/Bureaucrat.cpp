@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 07:01:09 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 11:25:13 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/27 16:09:05 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void Bureaucrat::incrementGrade(int i)
 {
 	if (grade - i < Bureaucrat::highestGrade)
 		throw(Bureaucrat::GradeTooHighException());
+	else if (grade - i > Bureaucrat::lowestGrade)
+		throw(Bureaucrat::GradeTooLowException());
 	else
 		grade -= i;
 }
@@ -78,6 +80,8 @@ void Bureaucrat::decrementGrade(int i)
 {
 	if (grade + i > Bureaucrat::lowestGrade)
 		throw(Bureaucrat::GradeTooLowException());
+	else if (grade + i < Bureaucrat::highestGrade)
+		throw(Bureaucrat::GradeTooHighException());
 	else
 		grade += i;
 }
