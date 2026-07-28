@@ -6,12 +6,11 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:50:12 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 10:47:22 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
-#include "Bureaucrat.hpp"
 #include <iostream>
 
 #define RED "\033[31m"
@@ -50,7 +49,7 @@ Form::~Form()
 
 Form& Form::operator=(const Form& other)
 {
-	(void)other;
+	this->isSigned = other.isSigned;
 	std::cout << "[Form] Assignment operator executed." << std::endl;
 	return (*this);
 }
@@ -80,12 +79,12 @@ void	Form::beSigned(const Bureaucrat& b)
 	if(b.getGrade() <= this->gradeRequiredToSign)
 	{
 		this->isSigned = true;
-		std::cout << GREEN
+	/*	std::cout << GREEN
 				  << "\n[Form] "
 				  << this->getName() 
 				  << " signed.\n"
 				  << RESET
-				  << std::endl;
+				  << std::endl; */
 	}
 	else
 		throw(Form::GradeTooLowException());

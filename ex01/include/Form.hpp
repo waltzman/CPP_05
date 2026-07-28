@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 13:21:16 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:17:27 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 10:46:50 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class Bureaucrat;
 class Form
 {
 	private:
-		std::string const	name;
+		const std::string 	name;
 		bool				isSigned;
-		int const			gradeRequiredToSign;
-		int const			gradeRequiredToExecute;
+		const int 			gradeRequiredToSign;
+		const int			gradeRequiredToExecute;
 
 	public:
 		Form();
@@ -35,7 +35,7 @@ class Form
 		~Form();
 
 		const std::string&	getName() const;
-		bool 				isFormSigned() const;
+		bool				isFormSigned() const;
 		int 				getGradeRequiredToSign() const;
 		int 				getGradeRequiredToExecute() const;
 		void 				beSigned(const Bureaucrat& b);

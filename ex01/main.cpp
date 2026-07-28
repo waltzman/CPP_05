@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:42:39 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 10:43:41 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,21 @@ int main()
 	
 	std::cout << "\n******* BUREAUCRAT SIGNING FORM *******\n\n";
 
+
 	{
 		try
 		{
 			Bureaucrat b("B", 10);
-			Form form("form 2026", 20, 45);
-			
+			Form form("Form_2026", 20, 45);
+			std::cout << "\n Form  BEFORE signing:" 
+					  << std::endl
+					  << form;
+
 			b.signForm(form);
+
+			std::cout << "\n Form  AFTER signing:" 
+					  << std::endl
+					  << form;
 		}
 		catch (std::exception &e)
 		{
@@ -72,6 +80,7 @@ int main()
 					  << std::endl;
 		}
 	}
+/*
 std::cout << "\n******* FORM INSERTION OPERATOR OVERLOAD TEST *******\n\n";
 	{
 		try
@@ -88,5 +97,6 @@ std::cout << "\n******* FORM INSERTION OPERATOR OVERLOAD TEST *******\n\n";
 					  << std::endl;
 		}
 	}
+*/
 	return (0);
 }

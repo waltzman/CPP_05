@@ -6,23 +6,23 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 16:03:07 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:17:20 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 10:31:14 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include "Form.hpp"
 #include <string>
 #include <iostream>
+#include "Form.hpp"
 
 class Form;
 
 class Bureaucrat
 {
 	private:
-		std::string name;
+		const std::string name;
 		int grade;
 	public:
 		Bureaucrat(void);
@@ -32,9 +32,8 @@ class Bureaucrat
 
 		Bureaucrat& operator=(const Bureaucrat& other);
 
-		const std::string& 	getName() const;
-		int					getGrade() const;
-
+		const std::string& getName() const;
+		int	getGrade() const;
 		void incrementGrade(int i);
 		void decrementGrade(int i);
 		void signForm(Form& form);
