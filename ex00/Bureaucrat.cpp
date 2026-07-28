@@ -6,52 +6,46 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 07:01:09 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/27 16:09:05 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 10:01:14 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : name("Bored bureaucrat") , grade(150)
 {
-	name = "Standart bureaucrat";
-	grade = 150;
-
 	std::cout << "[Bureaucrat] default constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade)
+Bureaucrat::Bureaucrat(const std::string& new_name, int new_grade) : 
+	name(new_name), grade(new_grade)
 {
-
 	std::cout << "[Bureaucrat] Parametrized constructor called" << std::endl;
-	if (grade < Bureaucrat::highestGrade)
+	if (new_grade < Bureaucrat::highestGrade)
 		throw(Bureaucrat::GradeTooHighException());
-	else if (grade > Bureaucrat::lowestGrade)
+	else if (new_grade > Bureaucrat::lowestGrade)
 		throw(Bureaucrat::GradeTooLowException());
-	else
-		this->grade = grade;
-	this->name =name;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
-			:name(other.name), grade(other.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat& other) :
+	name(other.name), grade(other.grade)
 {
 	std::cout << "[Bureaucrat] Copy constructor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "[Bureaucrat] destructor called" << std::endl;
+	std::cout << "[Bureaucrat] "
+			  << name
+			  << " destructor called\n" 
+			  << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
 	std::cout << "[Bureaucrat] assignment operator called" << std::endl;
 	if (this != &other) 
-	{
 		grade = other.grade;
-		name = other.name;
-	}
 	return *this;
 }
 

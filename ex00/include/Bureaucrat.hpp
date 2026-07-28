@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 16:03:07 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/16 11:10:48 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 09:38:31 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Bureaucrat
 {
 	private:
-		std::string name;
+		const std::string name;
 		int grade;
 	public:
 		Bureaucrat(void);

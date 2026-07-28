@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 10:16:49 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/27 16:14:16 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 10:03:26 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 
 int main()
 {
-	std::cout << " \n -----  INSERTION OPERATOR << OVERLOAD TEST -----\n" << std::endl;
-	Bureaucrat* bureaucrat = new Bureaucrat("Roman", 100);
-	std::cout << std::endl;
-	std::cout << "Insertion operator \"<<\"  overload test:\n"
-			  << *bureaucrat;
-	delete bureaucrat;
+	{
+		std::cout << " \n -----  INSERTION OPERATOR << OVERLOAD TEST -----\n" << std::endl;
+		Bureaucrat bureaucrat("Roman", 100);
+		std::cout << std::endl;
+		std::cout << "Insertion operator \"<<\"  overload test:\n"
+				  << bureaucrat
+				  << std::endl;
+	}
 	
 	try
 	{
@@ -46,8 +48,8 @@ int main()
 	{
 		std::cout << " \n -----  TESTING TOO LOW EXCEPTION  -----\n" << std::endl;
 		std::cout << "Testing GradeTooLowException:" << std::endl;
-		Bureaucrat* bureaucrat = new Bureaucrat("Ivan", 200);
-		bureaucrat->getGrade();
+		Bureaucrat bureaucrat("Ivan", 200);
+		bureaucrat.getGrade();
 	}
 	
 	catch(Bureaucrat::GradeTooLowException &e)
@@ -65,8 +67,8 @@ int main()
 	{
 		std::cout << " \n -----  TESTING TOO HIGH EXCEPTION  -----\n" << std::endl;
 		std::cout << "Testing GradeTooHighException:" << std::endl;
-		Bureaucrat* bureaucrat = new Bureaucrat("Ivan", 0);
-		bureaucrat->getGrade();
+		Bureaucrat bureaucrat("Ivan", 0);
+		bureaucrat.getGrade();
 	
 	}
 	catch(Bureaucrat::GradeTooHighException &e)
@@ -86,44 +88,44 @@ int main()
 	{
 		std::cout <<  "\n -----  TESTING INCREMENT ----- \n"
 				  << std::endl;
-		Bureaucrat* b1 = new Bureaucrat("Zel", 100);
+		Bureaucrat a("Zel", 100);
 		std::cout << std::endl;
-		std::cout << *b1;
+		std::cout << a;
 		std::cout << std::endl;
-		b1->incrementGrade(10);
-		std::cout << *b1;
+		a.incrementGrade(10);
+		std::cout << a;
 		std::cout << std::endl;
-		b1->incrementGrade(20);
-		std::cout << *b1;
+		a.incrementGrade(20);
+		std::cout << a;
 		std::cout << std::endl;
-		b1->incrementGrade(200);
-		std::cout << *b1;
+		a.incrementGrade(200);
+		std::cout << a;
 	}
 	catch(const std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 
 	try
 	{
 		std::cout <<  "\n -----  TESTING DECREMENT ----- \n"
 				  << std::endl;
-		Bureaucrat* b1 = new Bureaucrat("Zel", 100);
+		Bureaucrat b("Dan", 100);
 		std::cout << std::endl;
-		std::cout << *b1;
+		std::cout << b;
 		std::cout << std::endl;
-		b1->decrementGrade(10);
-		std::cout << *b1;
+		b.decrementGrade(10);
+		std::cout << b;
 		std::cout << std::endl;
-		b1->decrementGrade(20);
-		std::cout << *b1;
+		b.decrementGrade(20);
+		std::cout << b;
 		std::cout << std::endl;
-		b1->decrementGrade(200);
-		std::cout << *b1;
+		b.decrementGrade(200);
+		std::cout << b;
 	}
 	catch(const std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 	
 	
