@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:03:10 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/29 10:45:01 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 11:28:37 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int	main(void)
 		std::cout << RED << e.what() << RESET << '\n';
 	}
 
-	std::cin.get();
-	
+	//std::cin.get();
+
 	std::cout << "\n -------------  TEST: signing  forms ------------- \n" << std::endl;
  	
 	// ERROR at signing form:
@@ -89,7 +89,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 
 	try
@@ -98,7 +98,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 
 	try
@@ -107,7 +107,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
     // ERROR at signing form:
 	try
@@ -116,7 +116,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 
 	try
@@ -125,11 +125,11 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 
-	std::cin.get();
-	
+	//std::cin.get();
+
 	std::cout << "\n -------------  TEST: executing  forms ------------- \n" << std::endl;
 	
 	std::cout << std::endl << "Printing forms before executing:\n"
@@ -169,7 +169,7 @@ int	main(void)
 	}
 	// Clerk executing all possible forms
 	shrubberyCeationForm->execute(clerk);
-	std::cin.get();
+	//std::cin.get();
 	// Manager executing all possible forms
 	shrubberyCeationForm->execute(manager);
 	for (int i = 0; i < 10; ++i)
@@ -178,7 +178,8 @@ int	main(void)
 	// CEO executing all possible forms
 	
 	shrubberyCeationForm->execute(ceo);
-	std::cin.get();
+	//std::cin.get();
+
 	for (int i = 0; i < 10; ++i)
 		robotomyRequestForm->execute(ceo);
 	presidentialPardonForm->execute(ceo);

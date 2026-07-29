@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/29 10:14:36 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 11:27:28 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,16 +141,16 @@ std::ostream& operator<<(std::ostream& outputStream, const AForm& Aform)
 
 const char* AForm::GradeTooLowException::what(void) const throw()
 {
-	return ("[FORM] Exception: grade too low");
+	return ("[Form] Exception: grade too low");
 };
 
 const char* AForm::GradeTooHighException::what(void) const throw()
 {
-	return ("[FORM] Exception: grade too high");
+	return ("[Form] Exception: grade too high");
 };
 
 const char* AForm::FormNotSignedException::what(void) const throw()
 {
-	return ("[FORM] Exception: not signed to be executed");
+	return ("[Form] Exception: not signed to be executed");
 };
 
