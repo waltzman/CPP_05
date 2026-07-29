@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:03:10 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/29 10:38:12 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 10:45:01 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	main(void)
 	{
 		std::cout << RED << e.what() << RESET << '\n';
 	}
+
+	std::cin.get();
 	
 	std::cout << "\n -------------  TEST: signing  forms ------------- \n" << std::endl;
  	
@@ -126,6 +128,7 @@ int	main(void)
 		std::cerr << e.what() << '\n';
 	}
 
+	std::cin.get();
 	
 	std::cout << "\n -------------  TEST: executing  forms ------------- \n" << std::endl;
 	
@@ -175,8 +178,13 @@ int	main(void)
 	// CEO executing all possible forms
 	
 	shrubberyCeationForm->execute(ceo);
-	robotomyRequestForm->execute(ceo);
+	std::cin.get();
+	for (int i = 0; i < 10; ++i)
+		robotomyRequestForm->execute(ceo);
 	presidentialPardonForm->execute(ceo);
 	
+	delete shrubberyCeationForm;
+	delete robotomyRequestForm;
+	delete presidentialPardonForm;
 	return (0);
 }
