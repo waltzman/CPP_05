@@ -27,7 +27,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(TARGET)
-
+	@rm -rf *_shrubbery
 re: fclean all
 
 checkleaks: all

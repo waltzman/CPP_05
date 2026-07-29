@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:07:25 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/28 16:58:57 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 10:34:01 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ std::string const &	PresidentialPardonForm::getTarget(void) const
 
 void	PresidentialPardonForm::executeFormAction () const
 {
+	std::cout << std::endl
+			  << "[Form] "
+			  << this->getName()
+			  << " is beeing executed.\n"
+			  << std::endl;
+			  
 	std::cout << target
-			  << " has been pardoned by Zaphod Beeblebrox." 
+			  << " has been pardoned by Zaphod Beeblebrox.\n" 
 			  << std::endl;
 	return ;
 }

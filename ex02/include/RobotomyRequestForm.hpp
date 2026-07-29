@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:05:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/28 16:14:20 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 10:03:55 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class RobotomyRequestForm : public AForm
 
 	private:
 		std::string	target;
-		virtual void	executeFormAction() const;
+		void	executeFormAction() const;
 };
-
 #endif

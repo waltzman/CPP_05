@@ -28,7 +28,7 @@ class AForm
 		int const			gradeRequiredToExecute;
 		std::string const	target;
 
-		void  virtual		executeFormAction() const = 0;
+		virtual void				executeFormAction() const = 0;
 
 	public:
 		AForm();

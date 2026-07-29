@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:03:10 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/28 17:11:26 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 10:38:12 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,162 @@
 
 int	main(void)
 {
-	Bureaucrat	clerk("Clerk", 142);
-	Bureaucrat	manager("Manager", 65);
+	Bureaucrat	intern("Intern", 149);
+	Bureaucrat	clerk("Clerk", 136);
+	Bureaucrat	manager("Manager", 44);
 	Bureaucrat	ceo("CEO", 1);
 
 	std::cout << std::endl << "Three bureaucrats created:\n\n"
+			"\t" << intern << "\n"
 			"\t" << clerk << "\n"
 			"\t" << manager << "\n"
 			"\t" << ceo << std::endl << std::endl;
 	
 	AForm* shrubberyCeationForm = new ShrubberyCreationForm("Forest");
-	AForm* robotomyRequestForm = new RobotomyRequestForm("CEO");
-	AForm* presidentialPardonForm = new	PresidentialPardonForm("Aranceles");
+	AForm* robotomyRequestForm = new RobotomyRequestForm("Zel");
+	AForm* presidentialPardonForm = new	PresidentialPardonForm("Edward Snow");
 
 	std::cout << std::endl << "Three forms created:\n"
 			"\t" << *shrubberyCeationForm << "\n"
 			"\t" << *robotomyRequestForm << "\n"
 			"\t" << *presidentialPardonForm << std::endl;
 
-	/*  std::cout << std::endl << "-- Signing and executing Shrubbery form:" << std::endl;
-	lowlyBureaucrat.signForm(shrubForm);
-	lowlyBureaucrat.executeForm(shrubForm);
-	averageBureaucrat.executeForm(shrubForm);
+	std::cout << "\n -------------  TEST: executing not signed forms ------------- \n" << std::endl;
 
-	std::cout << std::endl << "-- Signing and executing Presidential Pardon form:" << std::endl;
-	highBureaucrat.executeForm(pardonForm);
-	highBureaucrat.signForm(pardonForm);
-	highBureaucrat.executeForm(pardonForm);
-	highBureaucrat.incrementGrade();
-	highBureaucrat.executeForm(pardonForm);
+	try
+	{
+		shrubberyCeationForm->execute(intern);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << '\n';
+	}
+	try
+	{
+		shrubberyCeationForm->execute(clerk);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << '\n';
+	}
 
-	std::cout << std::endl << "-- Signing and executing Robotomy form:" << std::endl;
-	averageBureaucrat.executeForm(robotomyForm);
-	averageBureaucrat.signForm(robotomyForm);
-	averageBureaucrat.executeForm(robotomyForm);
-	highBureaucrat.executeForm(robotomyForm); */
+	try
+	{
+		shrubberyCeationForm->execute(manager);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << '\n';
+	}
 
-	std::cout << std::endl;
+	try
+	{
+		shrubberyCeationForm->execute(ceo);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << '\n';
+	}
+	
+	std::cout << "\n -------------  TEST: signing  forms ------------- \n" << std::endl;
+ 	
+	// ERROR at signing form:
+	try
+	{
+		shrubberyCeationForm->beSigned(intern);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		shrubberyCeationForm->beSigned(clerk);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		robotomyRequestForm->beSigned(manager);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+    // ERROR at signing form:
+	try
+	{
+		presidentialPardonForm->beSigned(manager);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		presidentialPardonForm->beSigned(ceo);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	
+	std::cout << "\n -------------  TEST: executing  forms ------------- \n" << std::endl;
+	
+	std::cout << std::endl << "Printing forms before executing:\n"
+			"\t" << *shrubberyCeationForm << "\n"
+			"\t" << *robotomyRequestForm << "\n"
+			"\t" << *presidentialPardonForm << std::endl;
+	
+	// Erorrs executing forms
+	try
+	{
+		shrubberyCeationForm->execute(intern);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Intern failed execute the form." << std::endl;
+		std::cout << e.what() << '\n';
+	}
+
+	try
+	{
+		robotomyRequestForm->execute(clerk);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Clerk failed execute the form." << std::endl;
+		std::cout << e.what() << '\n';
+	}
+
+	try
+	{
+		presidentialPardonForm->execute(manager);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Manager failed execute the form." << std::endl;
+		std::cout << e.what() << '\n';
+	}
+	// Clerk executing all possible forms
+	shrubberyCeationForm->execute(clerk);
+	std::cin.get();
+	// Manager executing all possible forms
+	shrubberyCeationForm->execute(manager);
+	for (int i = 0; i < 10; ++i)
+		robotomyRequestForm->execute(manager);
+
+	// CEO executing all possible forms
+	
+	shrubberyCeationForm->execute(ceo);
+	robotomyRequestForm->execute(ceo);
+	presidentialPardonForm->execute(ceo);
+	
 	return (0);
 }

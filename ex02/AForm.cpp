@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/29 09:19:53 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 10:14:36 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,17 @@ int AForm::getGradeRequiredToExecute() const
 void AForm::beSigned(const Bureaucrat& b)
 {
 	if(b.getGrade() <= this->gradeRequiredToSign)
+	{
 		this->isSigned = true;
+		std::cout << GREEN 
+				  << "[Form] " 
+				  << name 
+				  << " successfully signed by "
+				  << b.getName()
+				  << " bureaucrat."
+				  << RESET
+				  << std::endl;
+	}
 	else
 		throw(GradeTooLowException());
 }
@@ -123,6 +133,7 @@ std::ostream& operator<<(std::ostream& outputStream, const AForm& Aform)
 				 << "\nSigned:\t\t\t\t" << (Aform.isFormSigned() ? "Signed" : "Not signed")
 				 << "\nGrade required to sign:\t\t" << Aform.getGradeRequiredToSign()
 				 << "\nGrade required to execute:\t" << Aform.getGradeRequiredToExecute()
+				 << "\nTarget:\t\t\t\t" << Aform.getTarget() 
 				 << "\n"
 				 << std::endl;
 	return outputStream;
@@ -130,16 +141,16 @@ std::ostream& operator<<(std::ostream& outputStream, const AForm& Aform)
 
 const char* AForm::GradeTooLowException::what(void) const throw()
 {
-	return ("Exception: AForm: grade too low");
+	return ("[FORM] Exception: grade too low");
 };
 
 const char* AForm::GradeTooHighException::what(void) const throw()
 {
-	return ("Exception: AForm: grade too high");
+	return ("[FORM] Exception: grade too high");
 };
 
 const char* AForm::FormNotSignedException::what(void) const throw()
 {
-	return ("Exception: Form: not signed");
+	return ("[FORM] Exception: not signed to be executed");
 };
 

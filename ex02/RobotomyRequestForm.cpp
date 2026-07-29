@@ -6,12 +6,18 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:05:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/28 16:59:18 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 10:34:34 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include <iostream>
+
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define RESET "\033[0m"
 
 RobotomyRequestForm::RobotomyRequestForm()
 		: AForm("Robotomy Request Form", 72, 45, "undefined")
@@ -58,12 +64,16 @@ void	RobotomyRequestForm::executeFormAction() const
 {
 	std::cout << "* ... drilling noises .... sshpshshzzzz.... *" << std::endl;
 	if (std::rand() % 2)
-		std::cout << target 
+		std::cout << target
+				  << GREEN
 				  << " successfully robotomized!"
+				  << RESET
 				  << std::endl;
 	else
 		std::cout << target
+				  << BLUE
 				  << " robotomy failed"
+				  << RESET
 				  << std::endl;
 	return ;
 }

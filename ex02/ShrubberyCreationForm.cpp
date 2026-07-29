@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:04:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/28 17:02:04 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 10:33:12 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ std::string const &	ShrubberyCreationForm::getTarget(void) const
 
 void	ShrubberyCreationForm::executeFormAction () const
 {
+	std::cout << std::endl
+			  << "[Form] "
+			  << this->getName()
+			  << " is beeing executed.\n"
+			  << std::endl;
+			  
 	std::ofstream	ofs;
 
 	ofs.open((this->target + "_shrubbery").c_str(),
