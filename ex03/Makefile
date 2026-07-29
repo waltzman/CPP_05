@@ -2,7 +2,7 @@ CPP = c++
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 INC_DIR = ./include
 INC_FLAGS = -I$(INC_DIR)
-TARGET = bureaucrats
+TARGET = intern_hell 
 SRCS = 	main.cpp\
 		Intern.cpp\
 		Bureaucrat.cpp\
