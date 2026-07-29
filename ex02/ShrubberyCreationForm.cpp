@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:04:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/29 10:33:12 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 13:05:42 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ShrubberyCreationForm::executeFormAction () const
 		ofs <<  "                     .%@@@@%::;\n";
 		ofs <<  "                     ;%@@@@%::;\n";         
 		ofs <<  "                    ;%@@@@%%:;;;.\n"; 
-		ofs <<  "                ...;%@@@@@%%:;;;;,..    Gilo97 ";
+		ofs <<  "                ...;%@@@@@%%:;;;;,..    Gilo97 \n";
 		ofs.close();
 	}
 	return ;
