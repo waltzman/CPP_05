@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:03:10 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/12/22 12:34:14 by mcombeau         ###   ########.fr       */
+/*   Updated: 2026/07/28 17:11:26 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@
 
 int	main(void)
 {
-	Bureaucrat	lowlyBureaucrat("Lowly Larry", 142);
-	Bureaucrat	averageBureaucrat("Average Andy", 65);
-	Bureaucrat	highBureaucrat("High Harry", 6);
+	Bureaucrat	clerk("Clerk", 142);
+	Bureaucrat	manager("Manager", 65);
+	Bureaucrat	ceo("CEO", 1);
 
-	std::cout << std::endl << "Three bureaucrats created:\n"
-			"\t" << lowlyBureaucrat << "\n"
-			"\t" << averageBureaucrat << "\n"
-			"\t" << highBureaucrat << std::endl << std::endl;
+	std::cout << std::endl << "Three bureaucrats created:\n\n"
+			"\t" << clerk << "\n"
+			"\t" << manager << "\n"
+			"\t" << ceo << std::endl << std::endl;
 	
-	ShrubberyCreationForm	shrubForm("Forest");
-	RobotomyRequestForm		robotomyForm("CEO");
-	PresidentialPardonForm	pardonForm(highBureaucrat.getName());
+	AForm* shrubberyCeationForm = new ShrubberyCreationForm("Forest");
+	AForm* robotomyRequestForm = new RobotomyRequestForm("CEO");
+	AForm* presidentialPardonForm = new	PresidentialPardonForm("Aranceles");
 
 	std::cout << std::endl << "Three forms created:\n"
-			"\t" << shrubForm << "\n"
-			"\t" << robotomyForm << "\n"
-			"\t" << pardonForm << std::endl;
+			"\t" << *shrubberyCeationForm << "\n"
+			"\t" << *robotomyRequestForm << "\n"
+			"\t" << *presidentialPardonForm << std::endl;
 
-	std::cout << std::endl << "-- Signing and executing Shrubbery form:" << std::endl;
+	/*  std::cout << std::endl << "-- Signing and executing Shrubbery form:" << std::endl;
 	lowlyBureaucrat.signForm(shrubForm);
 	lowlyBureaucrat.executeForm(shrubForm);
 	averageBureaucrat.executeForm(shrubForm);
@@ -55,7 +55,7 @@ int	main(void)
 	averageBureaucrat.executeForm(robotomyForm);
 	averageBureaucrat.signForm(robotomyForm);
 	averageBureaucrat.executeForm(robotomyForm);
-	highBureaucrat.executeForm(robotomyForm);
+	highBureaucrat.executeForm(robotomyForm); */
 
 	std::cout << std::endl;
 	return (0);

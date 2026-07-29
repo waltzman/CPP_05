@@ -6,39 +6,38 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 16:03:07 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 15:40:32 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 11:28:47 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include "AForm.hpp"
 #include <string>
 #include <iostream>
+#include "AForm.hpp"
 
-class AAForm;
+class AForm;
 
 class Bureaucrat
 {
 	private:
-		std::string name;
+		const std::string name;
 		int grade;
 	public:
-		Bureaucrat();
+		Bureaucrat(void);
 		Bureaucrat(const std::string& name, int grade);
 		Bureaucrat(const Bureaucrat& other);
 		~Bureaucrat();
 
 		Bureaucrat& operator=(const Bureaucrat& other);
 
-		const std::string& 	getName() const;
-		int					getGrade() const;
-
-		void incrementGrade(int i);
-		void decrementGrade(int i);
-		void signForm(AForm& form);
-		void executeForm(AForm& form);
+		const std::string& getName() const;
+		int		getGrade() const;
+		void	incrementGrade(int i);
+		void	decrementGrade(int i);
+		void	signForm(AForm& form);
+		void	executeForm(AForm const& form);
 
 		static int const	highestGrade = 1;
 		static int const	lowestGrade = 150;

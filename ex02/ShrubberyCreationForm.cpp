@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:04:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/17 16:06:29 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 17:02:04 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(void)
-		:	AForm("Shrubbery Creation Form",
-					ShrubberyCreationForm::gradeRequiredToSign,
-					ShrubberyCreationForm::gradeRequiredToExecute),
-			target("Unknown")
+		:	AForm("Shrubbery Creation Form", 145, 137, "Unknown")
 {
 	std::cout << "ShrubberyCreationForm default constructor called." << std::endl;
 	return ;
@@ -34,9 +31,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & other
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const & target)
-		:	AForm("Shrubbery Creation Form",
-					ShrubberyCreationForm::gradeRequiredToSign,
-					ShrubberyCreationForm::gradeRequiredToExecute),
+		:	AForm("Shrubbery Creation Form", 145, 137),
 			target(target)
 {
 	std::cout << "ShrubberyCreationForm attribute constructor called." << std::endl;
@@ -61,7 +56,7 @@ std::string const &	ShrubberyCreationForm::getTarget(void) const
 	return (this->target);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const& executor) const
+void	ShrubberyCreationForm::executeFormAction () const
 {
 	std::ofstream	ofs;
 
@@ -69,33 +64,33 @@ void	ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 								std::ofstream::out );
 	if (ofs.is_open())
 	{
-		ofs << "                            .         ;\n"
-                 .              .              ;%     ;;\n" 
-                   ,           ,                :;%  %;\n
-                    :         ;                   :;%;'     .,\n
-           ,.        %;     %;            ;        %;'    ,;\n
-             ;       ;%;  %%;        ,     %;    ;%;    ,%'\n
-              %;       %;%;      ,  ;       %;  ;%;   ,%;'\n
-               ;%;      %;        ;%;        % ;%;  ,%;'\n
-                `%;.     ;%;     %;'         `;%%;.%;'\n
-                 `:;%.    ;%%. %@;        %; ;@%;%'\n
-                    `:%;.  :;bd%;          %;@%;'\n
-                      `@%:.  :;%.         ;@@%;'\n
-                        `@%.  `;@%.      ;@@%;\n     
-                          `@%%. `@%%    ;@@%;\n     
-                            ;@%. :@%%  %@@%;\n    
-                              %@bd%%%bd%%:;\n  
-                                #@%%%%%:;;\n
-                                %@@%%%::;\n
-                                %@@@%(o);  . '\n         
-                                %@@@o%;:(.,'\n         
-                            `.. %@@@o%::;\n    
-                               `)@@@o%::;\n       
-                                %@@(o)::;\n      
-                               .%@@@@%::;\n
-                               ;%@@@@%::;\n         
-                              ;%@@@@%%:;;;.\n 
-                          ...;%@@@@@%%:;;;;,..    Gilo97 "
+		ofs <<  "                              .         ;\n";
+		ofs <<  "       .              .              ;%     ;;\n"; 
+		ofs <<  "         ,           ,                :;%  %;\n";
+		ofs <<  "          :         ;                   :;%;'     .,\n";
+		ofs <<  " ,.        %;     %;            ;        %;'    ,;\n";
+		ofs <<  "   ;       ;%;  %%;        ,     %;    ;%;    ,%'\n";
+		ofs <<  "    %;       %;%;      ,  ;       %;  ;%;   ,%;'\n";
+		ofs <<  "     ;%;      %;        ;%;        % ;%;  ,%;'\n";
+		ofs <<  "      `%;.     ;%;     %;'         `;%%;.%;'\n";
+		ofs <<  "       `:;%.    ;%%. %@;        %; ;@%;%'\n";
+		ofs <<  "          `:%;.  :;bd%;          %;@%;'\n";
+		ofs <<  "            `@%:.  :;%.         ;@@%;'\n";
+		ofs <<  "              `@%.  `;@%.      ;@@%;\n";     
+		ofs <<  "                `@%%. `@%%    ;@@%;\n";     
+		ofs <<  "                  ;@%. :@%%  %@@%;\n";    
+		ofs <<  "                    %@bd%%%bd%%:;\n";  
+		ofs <<  "                      #@%%%%%:;;\n";
+		ofs <<  "                      %@@%%%::;\n";
+		ofs <<  "                      %@@@%(o);  . '\n";         
+		ofs <<  "                      %@@@o%;:(.,'\n";         
+		ofs <<  "                  `.. %@@@o%::;\n";    
+		ofs <<  "                     `)@@@o%::;\n";       
+		ofs <<  "                      %@@(o)::;\n";      
+		ofs <<  "                     .%@@@@%::;\n";
+		ofs <<  "                     ;%@@@@%::;\n";         
+		ofs <<  "                    ;%@@@@%%:;;;.\n"; 
+		ofs <<  "                ...;%@@@@@%%:;;;;,..    Gilo97 ";
 		ofs.close();
 	}
 	return ;

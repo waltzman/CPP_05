@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 07:01:09 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 14:26:46 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 09:20:07 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,40 @@
 #define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : name("Bored bureaucrat") , grade(150)
 {
-	name = "Standart bureaucrat";
-	grade = 150;
-
 	std::cout << "[Bureaucrat] default constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade)
+Bureaucrat::Bureaucrat(const std::string& new_name, int new_grade) : 
+	name(new_name), grade(new_grade)
 {
-
 	std::cout << "[Bureaucrat] Parametrized constructor called" << std::endl;
-	if (grade < Bureaucrat::highestGrade)
+	if (new_grade < Bureaucrat::highestGrade)
 		throw(Bureaucrat::GradeTooHighException());
-	else if (grade > Bureaucrat::lowestGrade)
+	else if (new_grade > Bureaucrat::lowestGrade)
 		throw(Bureaucrat::GradeTooLowException());
-	else
-		this->grade = grade;
-	this->name =name;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
-			:name(other.name), grade(other.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat& other) :
+	name(other.name), grade(other.grade)
 {
 	std::cout << "[Bureaucrat] Copy constructor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "[Bureaucrat] destructor called" << std::endl;
+	std::cout << "[Bureaucrat] "
+			  << name
+			  << " destructor called\n" 
+			  << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
-	std::cout << "[Bureaucrat] assignment operator called" << std::endl;
+	std::cout << "[Bureaucrat] Copy assignment operator called" << std::endl;
 	if (this != &other) 
-	{
 		grade = other.grade;
-		name = other.name;
-	}
 	return *this;
 }
 
@@ -75,6 +69,8 @@ void Bureaucrat::incrementGrade(int i)
 {
 	if (grade - i < Bureaucrat::highestGrade)
 		throw(Bureaucrat::GradeTooHighException());
+	else if (grade - i > Bureaucrat::lowestGrade)
+		throw(Bureaucrat::GradeTooLowException());
 	else
 		grade -= i;
 }
@@ -83,39 +79,42 @@ void Bureaucrat::decrementGrade(int i)
 {
 	if (grade + i > Bureaucrat::lowestGrade)
 		throw(Bureaucrat::GradeTooLowException());
+	else if (grade + i < Bureaucrat::highestGrade)
+		throw(Bureaucrat::GradeTooHighException());
 	else
 		grade += i;
 }
 
-void Bureaucrat::signForm(AForm& form)
+void Bureaucrat::signForm(AForm& f)
 {
 	try
 	{
-		form.beSigned(*this);
+		f.beSigned(*this);
 		std::cout <<  "[Bureaucrat] "
 				  << name 
 				  << " signed the " 
-				  << form.getName() << " form.\n" << std::endl;
+				  << f.getName() << " form.\n" << std::endl;
 	}
 	catch(std::exception &e)
 	{
-		std::cout << "[Bureaucrat] "
+		std::cout << "\n[Bureaucrat] "
 				  << name
 				  << " could not sign the "
-				  << form.getName()
+				  << f.getName()
 				  << " form because: \n"
 				  << RED
 				  << e.what()
+				  << std::endl
 				  << RESET
 				  << std::endl;
 	}
 }
 
-void Bureaucrat::executeForm(AForm& form)
+void Bureaucrat::executeForm(AForm const & form)
 {
 	try
 	{
-		form.beExecuted(*this);
+		form.execute(*this);
 		std::cout <<  "[Bureaucrat] "
 				  << name 
 				  << " executed the " 

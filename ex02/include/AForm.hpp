@@ -23,26 +23,28 @@ class AForm
 {
 	private:
 		std::string const	name;
-		std::string const	target;
 		bool				isSigned;
 		int const			gradeRequiredToSign;
 		int const			gradeRequiredToExecute;
+		std::string const	target;
+
+		void  virtual		executeFormAction() const = 0;
 
 	public:
 		AForm();
 		AForm(const std::string& name, int gradeToSign, int gradeToExecute);
-		AForm(const std::string& name, int gradeToSign, int gradeToExecute, std::string target);
+		AForm(const std::string& name, int gradeToSign, int gradeToExecute, const std::string& target);
 		AForm(const AForm& other);
 		AForm& operator=(const AForm& other);
 		virtual ~AForm();
 
 		const std::string&	getName() const;
 		const std::string&	getTarget() const;
-		bool 				isAFormSigned() const;
+		bool 				isFormSigned() const;
 		int 				getGradeRequiredToSign() const;
 		int 				getGradeRequiredToExecute() const;
 		void 				beSigned(const Bureaucrat& b);
-		virtual void		execute(const Bureaucrat& executor) const = 0;
+		void				execute(const Bureaucrat& executor) const;
 		
 		class GradeTooLowException: public std::exception
 		{

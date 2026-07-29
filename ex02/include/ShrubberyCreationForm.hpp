@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:02:43 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/17 15:52:51 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 15:44:33 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,11 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm(void);
 
 		ShrubberyCreationForm &	operator=(ShrubberyCreationForm const & other);
-
 		std::string const &	getTarget() const;
 
-		void	execute(Bureaucrat const& executor) const;
-
-		static int const	gradeRequiredToSign = 145;
-		static int const	gradeRequiredToExecute = 137;
-
 	private:
-		std::string					target;
-		static std::string const	shrubbery;
-		static std::string const	shrubberyAlt;
+		std::string		target;	
+		virtual void	executeFormAction() const;
 };
 
 #endif

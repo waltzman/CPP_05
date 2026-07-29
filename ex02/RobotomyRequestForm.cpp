@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:05:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2026/07/17 15:52:26 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/28 16:59:18 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ std::string const &	RobotomyRequestForm::getTarget(void) const
 {
 	return (this->target);
 }
-
-void	RobotomyRequestForm::execute(Bureaucrat const& executor) const
+ 
+void	RobotomyRequestForm::executeFormAction() const
 {
 	std::cout << "* ... drilling noises .... sshpshshzzzz.... *" << std::endl;
 	if (std::rand() % 2)
-		std::cout << this->target 
+		std::cout << target 
 				  << " successfully robotomized!"
 				  << std::endl;
 	else
-		std::cout << this->target
+		std::cout << target
 				  << " robotomy failed"
 				  << std::endl;
 	return ;

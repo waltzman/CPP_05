@@ -6,7 +6,7 @@
 /*   By: rlobun <rlobun@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:45:32 by rlobun            #+#    #+#             */
-/*   Updated: 2026/07/17 15:36:14 by rlobun           ###   ########.fr       */
+/*   Updated: 2026/07/29 09:19:53 by rlobun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,27 @@
 #define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
-AForm::AForm(): name("Basic Aforn"), isSigned(false), gradeRequiredToSign(150), gradeRequiredToExecute (150)
+class Bureaucrat;
+
+AForm::AForm(): name("Basic form"), isSigned(false), gradeRequiredToSign(150), gradeRequiredToExecute (150)
 {	
 	std::cout << "[AForm] Default constructor executed." << std::endl;
 }
 
-AForm::AForm(const std::string& name, const int gradeToSign, const int gradeToExecute, std::string target) :
+AForm::AForm(const std::string& name, const int gradeToSign, const int gradeToExecute) :
+		name(name), isSigned(false), 
+		gradeRequiredToSign(gradeToSign), 
+		gradeRequiredToExecute (gradeToExecute)
+{
+	if (gradeRequiredToSign < Bureaucrat::highestGrade || gradeRequiredToExecute < Bureaucrat::highestGrade)
+		throw (AForm::GradeTooHighException());
+	if (gradeRequiredToSign > Bureaucrat::lowestGrade || gradeRequiredToExecute > Bureaucrat::lowestGrade)
+		throw (AForm::GradeTooLowException());
+
+	std::cout << "[AForm] Parametrized constructor called." << std::endl;
+}
+
+AForm::AForm(const std::string& name, const int gradeToSign, const int gradeToExecute, const std::string& target) :
 		name(name), isSigned(false), 
 		gradeRequiredToSign(gradeToSign), 
 		gradeRequiredToExecute (gradeToExecute),
@@ -35,7 +50,7 @@ AForm::AForm(const std::string& name, const int gradeToSign, const int gradeToEx
 	if (gradeRequiredToSign > Bureaucrat::lowestGrade || gradeRequiredToExecute > Bureaucrat::lowestGrade)
 		throw (AForm::GradeTooLowException());
 
-	std::cout << "[AForm] Parametrized constructor executed." << std::endl;
+	std::cout << "[AForm] Parametrized constructor called." << std::endl;
 }
 
 AForm::AForm(const AForm& other) :
@@ -43,18 +58,18 @@ AForm::AForm(const AForm& other) :
 	gradeRequiredToSign(other.gradeRequiredToSign), gradeRequiredToExecute (other.gradeRequiredToExecute)
 {
 	(void)other;
-	std::cout << "[AForm] Copy constructor executed." << std::endl;
+	std::cout << "[AForm] Copy constructor called." << std::endl;
 }
 
 AForm::~AForm()
 {
-	std::cout << "[AForm] Destructor executed." << std::endl;
+	std::cout << "[AForm] Destructor called." << std::endl;
 }
 
 AForm& AForm::operator=(const AForm& other)
 {
 	(void)other;
-	std::cout << "[AForm] Assignment operator executed." << std::endl;
+	std::cout << "[AForm] Copy assignment operator called." << std::endl;
 	return (*this);
 }
 
@@ -69,7 +84,7 @@ const std::string& AForm::getTarget() const
 }
 
 
-bool AForm::isAFormSigned() const
+bool AForm::isFormSigned() const
 {
 	return (this->isSigned);
 }
@@ -84,43 +99,31 @@ int AForm::getGradeRequiredToExecute() const
 	return (this->gradeRequiredToExecute);
 }
 
-void	AForm::beSigned(const Bureaucrat& b)
+void AForm::beSigned(const Bureaucrat& b)
 {
 	if(b.getGrade() <= this->gradeRequiredToSign)
-	{
 		this->isSigned = true;
-		std::cout << GREEN
-				  << "\n[Form] "
-				  << this->getName() 
-				  << " signed.\n"
-				  << RESET
-				  << std::endl;
-	}
 	else
-		throw(AForm::GradeTooLowException());
+		throw(GradeTooLowException());
 }
 
-/* void	AForm::execute(const Bureaucrat& executor) const
+void		AForm::execute(const Bureaucrat& executor) const
 {
-	if(executor.getGrade() <= this->gradeRequiredToExecute)
-	{
-		std::cout << YELLOW 
-				  << "[AForm] Bureaucrat "
-				  << this->getName() 
-				  << " executed.\n"
-				  << RESET
-				  << std::endl;
-	}
-	else
-		throw(AForm::GradeTooLowException());
-} */
-
+	if (!isSigned)
+		throw FormNotSignedException();
+	if (gradeRequiredToExecute < executor.getGrade())
+		throw GradeTooLowException();
+	executeFormAction();
+}
 std::ostream& operator<<(std::ostream& outputStream, const AForm& Aform)
 {
-	outputStream << "AForm" << Aform.getName()
-				 << "\nsigned:\t\t\t " << Aform.isAFormSigned()
-				 << "\nGrade required to sign:\t " << Aform.getGradeRequiredToSign()
-				 << "\nGrade required to execute:\t " << Aform.getGradeRequiredToExecute()
+	outputStream << "\n[Form] Printing:\n" 
+				 << "Name:\t\t\t\t" 
+				 << Aform.getName()
+				 << "\nSigned:\t\t\t\t" << (Aform.isFormSigned() ? "Signed" : "Not signed")
+				 << "\nGrade required to sign:\t\t" << Aform.getGradeRequiredToSign()
+				 << "\nGrade required to execute:\t" << Aform.getGradeRequiredToExecute()
+				 << "\n"
 				 << std::endl;
 	return outputStream;
 }
